@@ -1,5 +1,5 @@
 module Lib
-    ( someFunc
+    ( runParings
     ) where
 
 import Data.List
@@ -20,26 +20,8 @@ optimalParing t s = do
         True -> Just ( fst s, fst t)
         False -> Nothing
 
-runParings :: [TutorEligibilities] -> [StudentPreferences] -> [(Student, Tutor)]
-runParings t s = undefined
-
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
-
--- tutorEligibilities :: Tutor -> [Subjects]
--- tutorEligibilities Joakim = [ACT Reading, ACT Essay, ACT Writing]
--- tutorEligibilities Bob = [AP Chemistry, ACT Science]
--- tutorEligibilities Frieda = [ACT Essay, ACT Writing]
--- tutorEligibilities Kseniya = [US History]
--- tutorEligibilities Maggie = [ACT Science]
--- tutorEligibilities Jamal = [ACT Math]
-
--- studentPreferences :: Student -> [Subjects]
--- studentPreferences Annie = [ACT Math]
--- studentPreferences Oskar = [AP Chemistry]
--- studentPreferences Olle = [ACT Reading, ACT Writing, ACT Essay, ACT Science, ACT Math]
--- studentPreferences Ingrid = [US History, AP Chemistry]
--- studentPreferences Yuchen = [ACT Math]
--- studentPreferences Arjun = [ACT Reading, ACT Writing, ACT Essay]
--- studentPreferences Esmeralda = [AP Chemistry]
-
+runParings :: [TutorEligibilities] -> [StudentPreferences] -> [Maybe (Student, Tutor)]
+runParings t s = do
+    ss <- s
+    ts <- t
+    return (optimalParing ts ss)
